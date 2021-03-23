@@ -1,8 +1,13 @@
 package main
-import "fmt"
-func init() {
-   fmt.Println("Hello, init!")
-}
+
+import (
+	"fmt"
+	"strconv"
+)
+
 func main() {
-   fmt.Println("Hello, World!")
+	//v1 := []rune{'\u4ed8', '\u4eae'}
+	v1 := "100"
+	v2, _ := strconv.Atoi(v1)
+	fmt.Println(v2)
 }
