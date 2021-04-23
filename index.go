@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+	"strconv"
+)
 
 func main() {
 	//v1 := []rune{'\u4ed8', '\u4eae'}
@@ -77,19 +81,114 @@ func main() {
 	//	num++
 	//}
 	//fmt.Println(sum)
-	slice := []int{1, 2, 3, 4, 5}
-	myfunc(1, 2, true, "dfdfdf", slice)
-	fmt.Println(addNum(11, "dfdf"))
-	func(a, b int) {
-		fmt.Println(a + b)
-	}(11, 21)
+	//slice := []int{1, 2, 3, 4, 5}
+	//myfunc(1, 2, true, "dfdfdf", slice)
+	//fmt.Println(addNum(11, "dfdf"))
+	//func(a, b int) {
+	//	fmt.Println(a + b)
+	//}(11, 21)
+	//add := func (a, b int) int  {
+	//	return a + b
+	//}
+	//fmt.Println(add(1, 2))
+	//c := multiply(a, b)
+	//fmt.Printf("%d x %d = %d\n", a, b, c)
+	//a := 2
+	//b := 5
+	//decorator1 := execTime(multiply1)
+	//c := decorator1(a, b)
+	//fmt.Printf("%d x %d = %d\n", a, b, c)
+	//
+	//a = 1
+	//b = 4
+	//decorator2 := execTime(multiply2)
+	//c = decorator2(a, b)
+	//fmt.Printf("%d | %d = %d\n", a, b, c)
+
+	//d := 50
+	//decorator3 := execTime1(fibonacci2)
+	//e := decorator3(d)
+	//fmt.Printf("%d = %d\n", d, e)
+	//decorator4 := execTime1(fibonacci3)
+	//e = decorator4(d)
+	//fmt.Printf("%d = %d\n", d, e)
+	//var users
 }
-func myfunc(numbers ...interface{}) {
-	for _, number := range numbers {
-		fmt.Println(number)
+//func myfunc(numbers ...interface{}) {
+//	for _, number := range numbers {
+//		fmt.Println(number)
+//	}
+//}
+// 为函数类型设置别名提高代码可读性
+type MultiPlyFunc func(int, int) int
+type MultiPlyFunc1 func(int) int
+
+// 乘法运算函数
+func multiply1(a, b int) int {
+	time.Sleep(1)
+	return a * b
+}
+// 位运算函数
+func multiply2(a, b int) int {
+	time.Sleep(1)
+	return a | b
+}
+
+func execTime(f MultiPlyFunc) MultiPlyFunc  {
+	return func(a, b int) int {
+		start := time.Now() // 起始时间
+		c := f(a, b)
+		end := time.Since(start)
+		fmt.Printf("--- 执行耗时: %v ---\n", end)
+		return c
 	}
 }
 
-func addNum(a int, b string) (int, string) {
-	return a, b
+func execTime1(f MultiPlyFunc1) MultiPlyFunc1  {
+	return func(a int) int {
+		start := time.Now() // 起始时间
+		c := f(a)
+		end := time.Since(start)
+		fmt.Printf("--- 执行耗时: %v ---\n", end)
+		return c
+	}
+}
+
+func fibonacci1(n int) int {
+	if n == 1 {
+		return 0
+	}
+	if n == 2 {
+		return 1
+	}
+
+	return fibonacci1(n - 1) + fibonacci1(n - 2)
+}
+const MAX = 50
+var fibs [MAX]int
+func fibonacci2(n int) int {
+	if n == 1 {
+		return 0
+	}
+	if n == 2 {
+		return 1
+	}
+
+	index := n - 1
+	if fibs[index] != 0 {
+		return fibs[index]
+	}
+	num := fibonacci2(n-1) + fibonacci2(n-2)
+	fibs[index] = num
+	return num
+}
+
+func fibonacciTail(n, first, second int) int {
+	if n < 2 {
+		return first
+	}
+	return fibonacciTail(n-1, second, first+second) // 48 1 2 48
+}
+func fibonacci3(n int) int {
+	return fibonacciTail(n, 0, 1) // F(1) = 0, F(2) = 1
 }
