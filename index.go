@@ -34,9 +34,62 @@ func main() {
 	//	}
 	//	fmt.Println()
 	//}
-	months := [...]int8{1, 2, 3, 4, 5, 6, 7, 8}
-	q2 := months[3:7]
-	fmt.Println(q2)
-	mySlice1 := make([]int, 5)
-	fmt.Println(mySlice1)
+	//months := [...]int8{1, 2, 3, 4, 5, 6, 7, 8}
+	//q2 := months[3:7]
+	//fmt.Println(q2)
+	//mySlice1 := make([]int, 5, 10)
+	//fmt.Println(len(mySlice1))
+	//fmt.Println(cap(mySlice1))
+	//appendSlice := []int{1, 2, 3, 4, 5}
+	//newSlice := append(mySlice1, appendSlice...)
+	//fmt.Println(newSlice)
+	//keys := make([]string, 0)
+	//testMap := map[string]int{
+	//	"three": 3,
+	//	"one":   1,
+	//	"two":   2,
+	//}
+	//for k, _ := range testMap {
+	//	keys = append(keys, k)
+	//}
+	//sort.Strings(keys)
+	//fmt.Println(keys)
+	//a := 100
+	//ptr := &a
+	//b := *ptr
+	//a = 200
+	//fmt.Println(ptr)
+	//fmt.Println(b)
+	//switch {
+	//case a <= 50:
+	//	fmt.Println(50)
+	//case a <= 150:
+	//	fmt.Println(150)
+	//case a <= 200:
+	//	//fallthrough
+	//case a <= 250:
+	//	fmt.Println(250)
+	//}
+	//sum := 0
+	//num := 1
+	//for  num <= 100{
+	//	sum += num
+	//	num++
+	//}
+	//fmt.Println(sum)
+	slice := []int{1, 2, 3, 4, 5}
+	myfunc(1, 2, true, "dfdfdf", slice)
+	fmt.Println(addNum(11, "dfdf"))
+	func(a, b int) {
+		fmt.Println(a + b)
+	}(11, 21)
+}
+func myfunc(numbers ...interface{}) {
+	for _, number := range numbers {
+		fmt.Println(number)
+	}
+}
+
+func addNum(a int, b string) (int, string) {
+	return a, b
 }
