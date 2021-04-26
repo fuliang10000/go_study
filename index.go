@@ -112,7 +112,22 @@ func main() {
 	//decorator4 := execTime1(fibonacci3)
 	//e = decorator4(d)
 	//fmt.Printf("%d = %d\n", d, e)
-	//var users
+	users := []map[string]string{
+		{
+			"name": "张三",
+			"age": "18",
+		},
+		{
+			"name": "李四",
+			"age": "22",
+		},
+		{
+			"name": "王五",
+			"age": "20",
+		},
+	}
+
+	fmt.Printf("用户年龄累加结果: %d\n", sumValue(users))
 }
 //func myfunc(numbers ...interface{}) {
 //	for _, number := range numbers {
@@ -191,4 +206,13 @@ func fibonacciTail(n, first, second int) int {
 }
 func fibonacci3(n int) int {
 	return fibonacciTail(n, 0, 1) // F(1) = 0, F(2) = 1
+}
+
+func sumValue(users []map[string]string) int {
+	var sum int
+	for _, user := range users {
+		num,_ := strconv.Atoi(user["age"])
+		sum += num
+	}
+	return sum
 }
