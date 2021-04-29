@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	//"strconv"
+	"strconv"
 )
 
 func main() {
@@ -25,7 +25,11 @@ func main() {
 	ageSlice := mapToString(users, func(user map[string]string) string {
 		return user["age"]
 	})
-	fmt.Print(ageSlice)
+	sum := fieldSum(ageSlice, func(age string) int {
+		intAge,_ := strconv.Atoi(age)
+		return intAge
+	})
+	fmt.Print(sum)
 }
 
 func mapToString(items []map[string]string, f func(map[string]string) string) []string {
